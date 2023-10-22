@@ -17,9 +17,8 @@ public class UserRole extends BaseModelId {
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<User> users;
 
-    public UserRole(RoleEnum name, List<User> users) {
+    public UserRole(RoleEnum name) {
         this.name = name;
-        this.users = users;
     }
 
     public UserRole() {

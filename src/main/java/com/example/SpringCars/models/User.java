@@ -11,6 +11,8 @@ import java.util.List;
 public class User extends BaseModelIdDateUrl {
     @Column(name ="is_active")
     private boolean isActive;
+    @Column(name = "username")
+    private String username;
 
     @Column(name = "first_name")
     private String firstName;
@@ -31,13 +33,14 @@ public class User extends BaseModelIdDateUrl {
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<Offer> offers;
 
-    public User(boolean isActive, String firstName, String lastName, String password, UserRole role, List<Offer> offers) {
+    public User(boolean isActive,String username, String firstName, String lastName, String password,String imgUrl, UserRole role) {
         this.isActive = isActive;
+        this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
+        this.setImageUrl(imgUrl);
         this.role = role;
-        this.offers = offers;
     }
 
     public User() {
