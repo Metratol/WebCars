@@ -17,9 +17,8 @@ public class Brand extends BaseModelIdDate {
     private List<Model> models;
 
 
-    public Brand(String name, List<Model> models) {
+    public Brand(String name) {
         this.name = name;
-        this.models = models;
     }
 
     protected Brand() {

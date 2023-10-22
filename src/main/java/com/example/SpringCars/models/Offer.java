@@ -19,7 +19,7 @@ public class Offer extends BaseModelIdDateUrl {
     private EngineEnum engine;
 
     @Column(name = "price")
-    private float price;
+    private int price;
 
     @Column(name = "transmission")
     private TransmissionEnum transmisson;
@@ -40,13 +40,14 @@ public class Offer extends BaseModelIdDateUrl {
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private User seller;
 
-    public Offer(String description, EngineEnum engine, float price, TransmissionEnum transmisson, int year, int milieage, Model model, User seller) {
+    public Offer(String description, EngineEnum engine, int price, TransmissionEnum transmisson, int year, int milieage,String imgUrl,  User seller, Model model) {
         this.description = description;
         this.engine = engine;
         this.price = price;
         this.transmisson = transmisson;
         this.year = year;
         this.milieage = milieage;
+        this.setImageUrl(imgUrl);
         this.model = model;
         this.seller = seller;
     }
@@ -74,7 +75,7 @@ public class Offer extends BaseModelIdDateUrl {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

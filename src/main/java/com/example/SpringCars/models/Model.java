@@ -24,6 +24,7 @@ public class Model extends BaseModelIdDateUrl {
 
     @ManyToOne
     @JoinColumn(name = "brand_id",referencedColumnName = "id")
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Brand brand;
 
 
@@ -31,16 +32,18 @@ public class Model extends BaseModelIdDateUrl {
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<Offer> offers;
 
-    public Model(String name, CategoryEnum category, int startYear, int endYear, Brand brand, List<Offer> offers) {
+    public Model(String name, CategoryEnum category, int startYear, int endYear,String imgUrl, Brand brand)
+    {
+        this.setImageUrl(imgUrl);
         this.name = name;
         this.category = category;
         this.startYear = startYear;
         this.endYear = endYear;
         this.brand = brand;
-        this.offers = offers;
     }
 
     protected Model() {
+
     }
 
     public String getName() {
