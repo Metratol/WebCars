@@ -16,9 +16,9 @@ public class ModelDto {
     private int endYear;
     private LocalDateTime created;
     private LocalDateTime modified;
-    private Brand brand;
+    private BrandDto brand;
 
-    public ModelDto(UUID id, String name, CategoryEnum category, String imgUrl, int startYear, int endYear, LocalDateTime created, LocalDateTime modified, Brand brand) {
+    public ModelDto(UUID id, String name, CategoryEnum category, String imgUrl, int startYear, int endYear, LocalDateTime created, LocalDateTime modified, BrandDto brand) {
         this.id = id;
         this.name = name;
         this.category = category;
@@ -97,11 +97,11 @@ public class ModelDto {
         this.modified = modified;
     }
 
-    public Brand getBrand() {
+    public BrandDto getBrand() {
         return brand;
     }
 
-    public void setBrand(Brand brand) {
+    public void setBrand(BrandDto brand) {
         this.brand = brand;
     }
 

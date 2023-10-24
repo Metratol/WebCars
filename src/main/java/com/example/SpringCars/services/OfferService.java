@@ -12,7 +12,8 @@ public interface OfferService {
  OfferDto add(OfferDto offer);
  Optional<OfferDto> findOfferById(UUID id);
  void updateOfferPrice(UUID id,int newPrice);
+ List<OfferDto> getAllOffers();
  void deleteModelById(UUID id);
 
- void saveAllOffers(List<Offer> offers);//DTO????????????
+ void saveAllOffers(List<Offer> offers);
 }

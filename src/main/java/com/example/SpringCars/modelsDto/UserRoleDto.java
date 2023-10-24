@@ -6,11 +6,11 @@ import java.util.UUID;
 
 public class UserRoleDto {
     private UUID id;
-    private RoleEnum role;
+    private RoleEnum name;
 
-    public UserRoleDto(UUID id, RoleEnum role) {
+    public UserRoleDto(UUID id, RoleEnum name) {
         this.id = id;
-        this.role = role;
+        this.name = name;
     }
 
     public UserRoleDto() {
@@ -24,19 +24,19 @@ public class UserRoleDto {
         this.id = id;
     }
 
-    public RoleEnum getRole() {
-        return role;
+    public RoleEnum getName() {
+        return name;
     }
 
-    public void setRole(RoleEnum role) {
-        this.role = role;
+    public void setName(RoleEnum name) {
+        this.name = name;
     }
 
     @Override
     public String toString() {
         return "UserRoleDto{" +
                 "id=" + id +
-                ", role=" + role +
+                ", role=" + name +
                 '}';
     }
 }

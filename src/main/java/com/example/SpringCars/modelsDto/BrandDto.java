@@ -1,6 +1,7 @@
 package com.example.SpringCars.modelsDto;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 public class BrandDto {
@@ -8,12 +9,12 @@ public class BrandDto {
     private String name;
     private LocalDateTime created;
     private LocalDateTime modified;
-
     public BrandDto(UUID id, String name, LocalDateTime created, LocalDateTime modified) {
         this.id = id;
         this.name = name;
         this.created = created;
         this.modified = modified;
+
     }
 
     public BrandDto() {
@@ -50,6 +51,8 @@ public class BrandDto {
     public void setModified(LocalDateTime modified) {
         this.modified = modified;
     }
+
+
 
     @Override
     public String toString() {

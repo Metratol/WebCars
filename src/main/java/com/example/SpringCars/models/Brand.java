@@ -4,6 +4,7 @@ import com.example.SpringCars.models.baseModels.BaseModelIdDate;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Cascade;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -17,8 +18,10 @@ public class Brand extends BaseModelIdDate {
     private List<Model> models;
 
 
-    public Brand(String name) {
+    public Brand(String name, LocalDateTime created,LocalDateTime modified) {
         this.name = name;
+        setCreated(created);
+        setModified(modified);
     }
 
     protected Brand() {
@@ -32,11 +35,10 @@ public class Brand extends BaseModelIdDate {
         this.name = name;
     }
 
-    public List<Model> getModels() {
-        return models;
-    }
 
-    public void setModels(List<Model> models) {
-        this.models = models;
+    @Override
+    public String toString() {
+        return "Brand" +
+                "name='" + name + " " ;
     }
 }

@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 import com.example.SpringCars.models.enums.TransmissionEnum;
 import org.hibernate.annotations.Cascade;
 
-import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name ="offers")
@@ -22,7 +22,7 @@ public class Offer extends BaseModelIdDateUrl {
     private int price;
 
     @Column(name = "transmission")
-    private TransmissionEnum transmisson;
+    private TransmissionEnum transmission;
 
     @Column(name = "year")
     private int year;
@@ -40,12 +40,14 @@ public class Offer extends BaseModelIdDateUrl {
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private User seller;
 
-    public Offer(String description, EngineEnum engine, int price, TransmissionEnum transmisson, int year, int milieage,String imgUrl,  User seller, Model model) {
+    public Offer(String description, EngineEnum engine, int price, TransmissionEnum transmission, int year, LocalDateTime created,LocalDateTime modified, int milieage, String imgUrl, User seller, Model model) {
         this.description = description;
         this.engine = engine;
         this.price = price;
-        this.transmisson = transmisson;
+        this.transmission = transmission;
         this.year = year;
+        setCreated(created);
+        setModified(modified);
         this.milieage = milieage;
         this.setImageUrl(imgUrl);
         this.model = model;
@@ -79,12 +81,12 @@ public class Offer extends BaseModelIdDateUrl {
         this.price = price;
     }
 
-    public TransmissionEnum getTransmisson() {
-        return transmisson;
+    public TransmissionEnum getTransmission() {
+        return transmission;
     }
 
-    public void setTransmisson(TransmissionEnum transmisson) {
-        this.transmisson = transmisson;
+    public void setTransmission(TransmissionEnum transmission) {
+        this.transmission = transmission;
     }
 
     public int getYear() {
@@ -117,5 +119,19 @@ public class Offer extends BaseModelIdDateUrl {
 
     public void setMilieage(int milieage) {
         this.milieage = milieage;
+    }
+
+    @Override
+    public String toString() {
+        return "Offer{" +
+                "description='" + description + '\'' +
+                ", engine=" + engine +
+                ", price=" + price +
+                ", transmission=" + transmission +
+                ", year=" + year +
+                ", milieage=" + milieage +
+                ", model=" + model +
+                ", seller=" + seller +
+                '}';
     }
 }

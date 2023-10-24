@@ -7,6 +7,7 @@ import com.github.javafaker.Faker;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -18,6 +19,19 @@ import java.util.stream.Stream;
 
 public class BaseFactory {
 Faker faker = new Faker();
+UserRole user= new UserRole(RoleEnum.USER);
+UserRole admin= new UserRole(RoleEnum.ADMIN);
+List<UserRole> roles = new ArrayList<>(2);
+
+Brand bmw = new Brand(BrandEnum.BMW.name(),created(),modified());
+Brand chevrolet = new Brand(BrandEnum.CHEVROLET.name(),created(),modified());
+Brand toyota = new Brand(BrandEnum.TOYOTA.name(),created(),modified());
+Brand lada = new Brand(BrandEnum.LADA.name(),created(),modified());
+Brand haval = new Brand(BrandEnum.HAVAL.name(),created(),modified());
+List<Brand> brands = new ArrayList<>(5);
+
+
+
 
 public LocalDateTime created() {
 return faker.date()
@@ -56,19 +70,26 @@ int pick = new Random().nextInt(TransmissionEnum.values().length);
 return TransmissionEnum.values()[pick];
 }
 
-public RoleEnum roleRandom() {
+public UserRole roleRandom() {
 int pick = new Random().nextInt(RoleEnum.values().length);
-return RoleEnum.values()[pick];
+roles.add(user);
+roles.add(admin);
+return roles.get(pick);
 }
 
-public BrandEnum vehicleBrandsEnum() {
+public Brand brandRandom() {
 int pick = new Random().nextInt(BrandEnum.values().length);
-return BrandEnum.values()[pick];
+brands.add(lada);
+brands.add(haval);
+brands.add(bmw);
+brands.add(toyota);
+brands.add(chevrolet);
+return brands.get(pick);
 }
 
 
 public String name() {
-return faker.music().chord();
+return faker.ancient().god() + faker.address().countryCode();
 }
 
 public String imageUrl() {
@@ -76,20 +97,18 @@ return faker.internet().image();
 }
 
 public String description() {
-return faker.superhero().descriptor();
+return faker.weather().description();
 }
 
 public Integer startYear() {
-return faker.random().nextInt(2000, 2010);
+return faker.random().nextInt(1988, 2005);
 }
 
 public String username() {
-return faker.animal().name() + faker.programmingLanguage().name() +faker.address().buildingNumber();
+return ((faker.animal().name() + faker.programmingLanguage().name() +faker.address().buildingNumber()).replace(" ",""));
 }
-
 public String password() {
 return faker.internet().password();
-
 }
 
 public String firstname() {
@@ -102,7 +121,7 @@ return faker.name().lastName();
 
 
 public Integer endYear() {
-return faker.random().nextInt(2010, 2020);
+return faker.random().nextInt(2005, 2017);
 }
 
 
@@ -114,25 +133,17 @@ public Integer mileage() {
 return faker.random().nextInt(7, 300000);
 }
 
-public Brand brand() {
-return new Brand(vehicleBrandsEnum().name());
-}
-
 public Model model() {
-return new Model(name(), categoryRandom(), startYear(), endYear(),imageUrl(), brand());
+return new Model(name(), categoryRandom(), startYear(), endYear(),created(),modified(),imageUrl(), brandRandom());
 }
 
 public User user() {
-return new User(faker.random().nextBoolean(), username(),  firstname(), lastname(),password(),imageUrl(),  role());
-}
-
-public UserRole role() {
-return new UserRole(roleRandom());
+return new User(faker.random().nextBoolean(), username(),  firstname(), lastname(),password(),created(),modified(),imageUrl(),  roleRandom());
 }
 
 
 final Offer make(UnaryOperator<Offer>... offers) {
-final Offer result = new Offer(description(), engineRandom(),price(),transmissionRandom(),endYear(),  mileage(),  imageUrl(), user(), model());
+final Offer result = new Offer(description(), engineRandom(),price(),transmissionRandom(),endYear(), created(),modified(),  mileage(),  imageUrl(), user(), model());
 Stream.of(offers).forEach(v -> v.apply(result));
 return result;
 }
