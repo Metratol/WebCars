@@ -5,6 +5,7 @@ import com.example.SpringCars.models.enums.CategoryEnum;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Cascade;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -32,13 +33,15 @@ public class Model extends BaseModelIdDateUrl {
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<Offer> offers;
 
-    public Model(String name, CategoryEnum category, int startYear, int endYear,String imgUrl, Brand brand)
+    public Model(String name, CategoryEnum category, int startYear, int endYear, LocalDateTime created,LocalDateTime modified,String imgUrl, Brand brand)
     {
         this.setImageUrl(imgUrl);
         this.name = name;
         this.category = category;
         this.startYear = startYear;
         this.endYear = endYear;
+        setCreated(created);
+        setModified(modified);
         this.brand = brand;
     }
 
@@ -92,5 +95,16 @@ public class Model extends BaseModelIdDateUrl {
 
     public void setOffers(List<Offer> offers) {
         this.offers = offers;
+    }
+
+    @Override
+    public String toString() {
+        return "Model{" +
+                "brand=" + brand +
+                "name='" + name + '\'' +
+                ", category=" + category +
+                ", startYear=" + startYear +
+                ", endYear=" + endYear +
+                '}';
     }
 }

@@ -8,25 +8,14 @@ public class UserDto {
     private String username;
     private String firstName;
     private String lastName;
+    private String password;
     private boolean isActive;
     private UserRoleDto role;
     private String imageUrl;
     private LocalDateTime created;
     private LocalDateTime modified;
 
-    public UserDto(UUID id, String username, String firstName, String lastName, boolean isActive, UserRoleDto role, String imageUrl, LocalDateTime created, LocalDateTime modified) {
-        this.id = id;
-        this.username = username;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.isActive = isActive;
-        this.role = role;
-        this.imageUrl = imageUrl;
-        this.created = created;
-        this.modified = modified;
-    }
-
-    public UserDto() {
+    protected UserDto() {
     }
 
     public UUID getId() {
@@ -59,6 +48,14 @@ public class UserDto {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public boolean isActive() {
@@ -101,6 +98,19 @@ public class UserDto {
         this.modified = modified;
     }
 
+    public UserDto(UUID id, String username, String firstName, String lastName, String password, boolean isActive, UserRoleDto role, String imageUrl, LocalDateTime created, LocalDateTime modified) {
+        this.id = id;
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.isActive = isActive;
+        this.role = role;
+        this.imageUrl = imageUrl;
+        this.created = created;
+        this.modified = modified;
+    }
+
     @Override
     public String toString() {
         return "UserDto{" +
@@ -108,6 +118,7 @@ public class UserDto {
                 ", username='" + username + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", password='" + password + '\'' +
                 ", isActive=" + isActive +
                 ", role=" + role +
                 ", imageUrl='" + imageUrl + '\'' +

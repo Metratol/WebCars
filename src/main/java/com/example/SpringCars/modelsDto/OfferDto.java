@@ -3,7 +3,6 @@ package com.example.SpringCars.modelsDto;
 import com.example.SpringCars.models.enums.EngineEnum;
 import com.example.SpringCars.models.enums.TransmissionEnum;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -13,15 +12,15 @@ public class OfferDto {
     private EngineEnum engine;
     private String imageUrl;
     private int milieage;
-    private BigDecimal price;
+    private int price;
     private TransmissionEnum transmission;
     private int year;
     private LocalDateTime created;
     private LocalDateTime modified;
     private ModelDto model;
-    private UserDto user;
+    private UserDto seller;
 
-    public OfferDto(UUID id, String description, EngineEnum engine, String imageUrl, int milieage, BigDecimal price, TransmissionEnum transmission, int year, LocalDateTime created, LocalDateTime modified, ModelDto model, UserDto user) {
+    public OfferDto(UUID id, String description, EngineEnum engine, String imageUrl, int milieage, int price, TransmissionEnum transmission, int year, LocalDateTime created, LocalDateTime modified, ModelDto model, UserDto seller) {
         this.id = id;
         this.description = description;
         this.engine = engine;
@@ -33,7 +32,7 @@ public class OfferDto {
         this.created = created;
         this.modified = modified;
         this.model = model;
-        this.user = user;
+        this.seller = seller;
     }
 
     public OfferDto() {
@@ -80,11 +79,11 @@ public class OfferDto {
         this.milieage = milieage;
     }
 
-    public BigDecimal getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -128,29 +127,29 @@ public class OfferDto {
         this.model = model;
     }
 
-    public UserDto getUser() {
-        return user;
+    public UserDto getSeller() {
+        return seller;
     }
 
-    public void setUser(UserDto user) {
-        this.user = user;
+    public void setSeller(UserDto seller) {
+        this.seller = seller;
     }
 
     @Override
     public String toString() {
-        return "OfferDto{" +
-                "id=" + id +
-                ", description='" + description + '\'' +
-                ", engine=" + engine +
-                ", imageUrl='" + imageUrl + '\'' +
-                ", milieage=" + milieage +
-                ", price=" + price +
-                ", transmission=" + transmission +
-                ", year=" + year +
-                ", created=" + created +
-                ", modified=" + modified +
-                ", model=" + model +
-                ", user=" + user +
+        return "OfferDto{" + "\n" +
+                "id=" + id + "\n" +
+                ", description='" + description + '\n' +
+                ", engine=" + engine + "\n" +
+                ", imageUrl='" + imageUrl + "\n" +
+                ", milieage=" + milieage + "\n" +
+                ", price=" + price + "\n" +
+                ", transmission=" + transmission + "\n" +
+                ", year=" + year + "\n" +
+                ", created=" + created + "\n" +
+                ", modified=" + modified + "\n" +
+                ", model=" + model + "\n" +
+                ", seller=" + seller + "\n" +
                 '}';
     }
 }

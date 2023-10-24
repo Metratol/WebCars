@@ -4,6 +4,7 @@ import com.example.SpringCars.models.baseModels.BaseModelIdDateUrl;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Cascade;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -29,21 +30,43 @@ public class User extends BaseModelIdDateUrl {
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private UserRole role;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "isActive=" + isActive +
+                ", username='" + username + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
+                '}';
+    }
+
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "seller")
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<Offer> offers;
 
-    public User(boolean isActive,String username, String firstName, String lastName, String password,String imgUrl, UserRole role) {
+    public User(boolean isActive, String username, String firstName, String lastName, String password, LocalDateTime created, LocalDateTime modified,String imgUrl, UserRole role) {
         this.isActive = isActive;
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
+        setCreated(created);
+        setModified(modified);
         this.setImageUrl(imgUrl);
         this.role = role;
     }
 
     public User() {
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public boolean isActive() {

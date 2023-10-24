@@ -1,4 +1,4 @@
-package com.example.SpringCars.init;
+package com.example.SpringCars.init.factories;
 
 import com.example.SpringCars.init.factories.BaseFactory;
 import org.springframework.context.annotation.Bean;
