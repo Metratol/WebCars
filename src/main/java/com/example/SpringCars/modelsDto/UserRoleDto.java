@@ -34,9 +34,7 @@ public class UserRoleDto {
 
     @Override
     public String toString() {
-        return "UserRoleDto{" +
-                "id=" + id +
-                ", role=" + name +
-                '}';
+        return ", role=" + name;
+
     }
 }

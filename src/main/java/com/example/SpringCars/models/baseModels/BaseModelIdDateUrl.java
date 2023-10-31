@@ -5,6 +5,7 @@ import jakarta.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public class BaseModelIdDateUrl extends BaseModelIdDate{
+
     @Column(name = "image_url")
     private String imageUrl;
 

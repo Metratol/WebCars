@@ -1,9 +1,8 @@
 package com.example.SpringCars.services;
 
-import com.example.SpringCars.models.Model;
 import com.example.SpringCars.models.enums.BrandEnum;
-import com.example.SpringCars.models.enums.RoleEnum;
 import com.example.SpringCars.modelsDto.BrandDto;
+import com.example.SpringCars.web.view.ModelView;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,7 +14,7 @@ public interface BrandService {
     List<BrandDto> getAllBrands();
 
     void deleteBrandById(UUID id);
-    List<Model> allBrandModels(BrandEnum brandEnum);
+    List<ModelView> allBrandModels(String name);
     int brandSales(BrandEnum brandEnum);
     int brandProfit(BrandEnum brandEnum);
 

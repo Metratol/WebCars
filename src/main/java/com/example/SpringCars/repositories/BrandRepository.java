@@ -31,4 +31,5 @@ public interface BrandRepository extends JpaRepository<Brand, UUID> {
     int brandProfit(@Param(value = "name")String name);
 
 
+
 }
