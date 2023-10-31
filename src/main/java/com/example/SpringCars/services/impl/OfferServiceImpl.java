@@ -5,6 +5,8 @@ import com.example.SpringCars.modelsDto.ModelDto;
 import com.example.SpringCars.modelsDto.OfferDto;
 import com.example.SpringCars.repositories.OfferRepository;
 import com.example.SpringCars.services.OfferService;
+import com.example.SpringCars.web.view.OfferCreation;
+import com.example.SpringCars.web.view.OfferView;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -24,9 +26,9 @@ public class OfferServiceImpl implements OfferService {
     }
 
     @Override
-    public OfferDto add(OfferDto offer) {
+    public OfferView add(OfferCreation offer) {
         Offer o = modelMapper.map(offer,Offer.class);
-        return modelMapper.map(offerRepository.save(o),OfferDto.class);
+        return modelMapper.map(offerRepository.save(o),OfferView.class);
     }
 
     @Override
@@ -44,8 +46,8 @@ public class OfferServiceImpl implements OfferService {
     }
 
     @Override
-    public List<OfferDto> getAllOffers() {
-        return offerRepository.findAll().stream().map((o) -> modelMapper.map(o, OfferDto.class)).collect(Collectors.toList());
+    public List<OfferView> getAllOffers() {
+        return offerRepository.findAll().stream().map((o) -> modelMapper.map(o, OfferView.class)).collect(Collectors.toList());
     }
 
     @Override

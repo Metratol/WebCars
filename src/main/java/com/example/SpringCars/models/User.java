@@ -6,13 +6,14 @@ import org.hibernate.annotations.Cascade;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name ="users")
 public class User extends BaseModelIdDateUrl {
     @Column(name ="is_active")
     private boolean isActive;
-    @Column(name = "username")
+    @Column(name = "username",unique = true,nullable = false)
     private String username;
 
     @Column(name = "first_name")
@@ -21,7 +22,7 @@ public class User extends BaseModelIdDateUrl {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "password")
+    @Column(name = "password",nullable = false)
     private String password;
 
 
@@ -44,7 +45,7 @@ public class User extends BaseModelIdDateUrl {
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "seller")
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    private List<Offer> offers;
+    private Set<Offer> offers;
 
     public User(boolean isActive, String username, String firstName, String lastName, String password, LocalDateTime created, LocalDateTime modified,String imgUrl, UserRole role) {
         this.isActive = isActive;
@@ -109,11 +110,11 @@ public class User extends BaseModelIdDateUrl {
         this.role = role;
     }
 
-    public List<Offer> getOffers() {
+    public Set<Offer> getOffers() {
         return offers;
     }
 
-    public void setOffers(List<Offer> offers) {
+    public void setOffers(Set<Offer> offers) {
         this.offers = offers;
     }
 }

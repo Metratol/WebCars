@@ -12,8 +12,8 @@ public class UserDto {
     private boolean isActive;
     private UserRoleDto role;
     private String imageUrl;
-    private LocalDateTime created;
-    private LocalDateTime modified;
+
+
 
     protected UserDto() {
     }
@@ -82,23 +82,8 @@ public class UserDto {
         this.imageUrl = imageUrl;
     }
 
-    public LocalDateTime getCreated() {
-        return created;
-    }
 
-    public void setCreated(LocalDateTime created) {
-        this.created = created;
-    }
-
-    public LocalDateTime getModified() {
-        return modified;
-    }
-
-    public void setModified(LocalDateTime modified) {
-        this.modified = modified;
-    }
-
-    public UserDto(UUID id, String username, String firstName, String lastName, String password, boolean isActive, UserRoleDto role, String imageUrl, LocalDateTime created, LocalDateTime modified) {
+    public UserDto(UUID id, String username, String firstName, String lastName, String password, boolean isActive, UserRoleDto role, String imageUrl) {
         this.id = id;
         this.username = username;
         this.firstName = firstName;
@@ -107,8 +92,6 @@ public class UserDto {
         this.isActive = isActive;
         this.role = role;
         this.imageUrl = imageUrl;
-        this.created = created;
-        this.modified = modified;
     }
 
     @Override
@@ -122,8 +105,6 @@ public class UserDto {
                 ", isActive=" + isActive +
                 ", role=" + role +
                 ", imageUrl='" + imageUrl + '\'' +
-                ", created=" + created +
-                ", modified=" + modified +
                 '}';
     }
 }

@@ -6,6 +6,7 @@ import org.hibernate.annotations.Cascade;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name ="brands")
@@ -15,7 +16,7 @@ public class Brand extends BaseModelIdDate {
 
     @OneToMany(mappedBy = "brand",fetch = FetchType.LAZY)
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    private List<Model> models;
+    private Set<Model> models;
 
 
     public Brand(String name, LocalDateTime created,LocalDateTime modified) {

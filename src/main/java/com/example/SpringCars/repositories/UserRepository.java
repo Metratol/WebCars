@@ -19,6 +19,6 @@ public interface UserRepository extends JpaRepository<User, UUID> {
 
     @Query(value = "SELECT o FROM Offer o " +
             "JOIN User u ON u = o.seller " +
-            "WHERE u.id = :id")
-    List<Offer> findAllUserOffers(@Param(value = "id") UUID id);
+            "WHERE u.username = :username")
+    List<Offer> findAllUserOffers(@Param(value = "username") String username);
 }

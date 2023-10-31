@@ -1,41 +1,27 @@
-package com.example.SpringCars.modelsDto;
+package com.example.SpringCars.web.view;
 
-import com.example.SpringCars.models.Brand;
 import com.example.SpringCars.models.enums.CategoryEnum;
+import com.example.SpringCars.modelsDto.BrandDto;
 
-import java.time.LocalDateTime;
-import java.util.UUID;
-
-public class ModelDto {
-    private UUID id;
+public class ModelView {
     private String name;
     private CategoryEnum category;
 
-    private String imgUrl;
+    private String imageUrl;
     private int startYear;
     private int endYear;
     private BrandDto brand;
 
-    public ModelDto(UUID id, String name, CategoryEnum category, String imgUrl, int startYear, int endYear, BrandDto brand) {
-        this.id = id;
+    public ModelView(String name, CategoryEnum category, String imageUrl, int startYear, int endYear, BrandDto brand) {
         this.name = name;
         this.category = category;
-        this.imgUrl = imgUrl;
+        this.imageUrl = imageUrl;
         this.startYear = startYear;
         this.endYear = endYear;
-
         this.brand = brand;
     }
 
-    public ModelDto() {
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
+    public ModelView() {
     }
 
     public String getName() {
@@ -54,12 +40,12 @@ public class ModelDto {
         this.category = category;
     }
 
-    public String getImgUrl() {
-        return imgUrl;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public int getStartYear() {
@@ -88,13 +74,13 @@ public class ModelDto {
 
     @Override
     public String toString() {
-        return "ModelDto{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", category=" + category +
-                ", imgUrl='" + imgUrl + '\'' +
+        return "ModelView{" +
+                "name='" + name + '\'' +
+                ", category=" + category.name() +
+                ", imgUrl='" + imageUrl + '\'' +
                 ", startYear=" + startYear +
                 ", endYear=" + endYear +
+                ", brand=" + brand.getName() +
                 '}';
     }
 }

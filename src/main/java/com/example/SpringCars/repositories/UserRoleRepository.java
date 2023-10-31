@@ -20,7 +20,7 @@ public interface UserRoleRepository extends JpaRepository<UserRole, UUID> {
     @Query(value = "SELECT u FROM User u " +
             "JOIN UserRole r ON r = u.role " +
             "WHERE r.name = :name")
-    List<User> findAllWithRoleUser(@Param(value = "name") RoleEnum roleEnum);
+    List<User> findAllWithCurrentRole(@Param(value = "name") RoleEnum roleEnum);
 
 
 }

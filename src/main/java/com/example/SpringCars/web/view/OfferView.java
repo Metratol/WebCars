@@ -1,13 +1,11 @@
-package com.example.SpringCars.modelsDto;
+package com.example.SpringCars.web.view;
 
 import com.example.SpringCars.models.enums.EngineEnum;
 import com.example.SpringCars.models.enums.TransmissionEnum;
+import com.example.SpringCars.modelsDto.ModelDto;
+import com.example.SpringCars.modelsDto.UserDto;
 
-import java.time.LocalDateTime;
-import java.util.UUID;
-
-public class OfferDto {
-    private UUID id;
+public class OfferView {
     private String description;
     private EngineEnum engine;
     private String imageUrl;
@@ -18,8 +16,7 @@ public class OfferDto {
     private ModelDto model;
     private UserDto seller;
 
-    public OfferDto(UUID id, String description, EngineEnum engine, String imageUrl, int milieage, int price, TransmissionEnum transmission, int year, ModelDto model, UserDto seller) {
-        this.id = id;
+    public OfferView(String description, EngineEnum engine, String imageUrl, int milieage, int price, TransmissionEnum transmission, int year, ModelDto model, UserDto seller) {
         this.description = description;
         this.engine = engine;
         this.imageUrl = imageUrl;
@@ -31,16 +28,7 @@ public class OfferDto {
         this.seller = seller;
     }
 
-    public OfferDto() {
-    }
-
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
+    public OfferView() {
     }
 
     public String getDescription() {
@@ -98,6 +86,7 @@ public class OfferDto {
     public void setYear(int year) {
         this.year = year;
     }
+
     public ModelDto getModel() {
         return model;
     }
@@ -116,15 +105,16 @@ public class OfferDto {
 
     @Override
     public String toString() {
-        return "OfferDto{" + "\n" +
-                "id=" + id + "\n" +
-                ", description='" + description + '\n' +
-                ", engine=" + engine + "\n" +
-                ", imageUrl='" + imageUrl + "\n" +
-                ", milieage=" + milieage + "\n" +
-                ", price=" + price + "\n" +
-                ", transmission=" + transmission + "\n" +
-                ", year=" + year + "\n" +
+        return "OfferView{" +
+                "description='" + description + '\'' +
+                ", engine=" + engine.name() +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", milieage=" + milieage +
+                ", price=" + price +
+                ", transmission=" + transmission.name() +
+                ", year=" + year +
+                ", model=" + model.getName() +
+                ", seller=" + seller.getUsername() +
                 '}';
     }
 }

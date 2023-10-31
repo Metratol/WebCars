@@ -1,11 +1,11 @@
 package com.example.SpringCars.services.impl;
 
 import com.example.SpringCars.models.Brand;
-import com.example.SpringCars.models.Model;
 import com.example.SpringCars.models.enums.BrandEnum;
 import com.example.SpringCars.modelsDto.BrandDto;
 import com.example.SpringCars.repositories.BrandRepository;
 import com.example.SpringCars.services.BrandService;
+import com.example.SpringCars.web.view.ModelView;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -46,8 +46,8 @@ public class BrandServiceImpl implements BrandService {
     }
 
     @Override
-    public List<Model> allBrandModels(BrandEnum brandEnum) {
-        return brandRepository.findAllBrandModels(brandEnum.name());
+    public List<ModelView> allBrandModels(String name) {
+        return brandRepository.findAllBrandModels(name).stream().map((b) -> modelMapper.map(b,ModelView.class)).collect(Collectors.toList());
     }
 
     @Override
