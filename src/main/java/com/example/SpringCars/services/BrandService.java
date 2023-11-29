@@ -2,6 +2,7 @@ package com.example.SpringCars.services;
 
 import com.example.SpringCars.models.enums.BrandEnum;
 import com.example.SpringCars.modelsDto.BrandDto;
+import com.example.SpringCars.web.view.BrandView;
 import com.example.SpringCars.web.view.ModelView;
 
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.UUID;
 public interface BrandService {
     BrandDto add(BrandDto brand);
     Optional<BrandDto> findBrandById(UUID id);
-    List<BrandDto> getAllBrands();
+    List<BrandView> getAllBrands();
 
     void deleteBrandById(UUID id);
     List<ModelView> allBrandModels(String name);

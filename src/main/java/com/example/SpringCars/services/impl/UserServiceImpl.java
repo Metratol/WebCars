@@ -7,6 +7,7 @@ import com.example.SpringCars.repositories.UserRoleRepository;
 import com.example.SpringCars.services.UserService;
 import com.example.SpringCars.web.view.OfferView;
 import com.example.SpringCars.web.view.UserCreation;
+import com.example.SpringCars.web.view.UserView;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -41,8 +42,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDto> getAllUsers() {
-        return userRepository.findAll().stream().map((u) -> modelMapper.map(u, UserDto.class)).collect(Collectors.toList());
+    public List<UserView> getAllUsers() {
+        return userRepository.findAll().stream().map((u) -> modelMapper.map(u,UserView.class)).collect(Collectors.toList());
     }
 
 

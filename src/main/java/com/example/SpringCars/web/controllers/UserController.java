@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/user")
 public class UserController {
     UserService userService;
     UserRoleService userRoleService;
@@ -24,17 +23,23 @@ public class UserController {
         this.userService = userService;
         this.userRoleService = userRoleService;
     }
+    @GetMapping("/users")
+    public String getAllUsers(Model model){
+        List<UserView> users = userService.getAllUsers();
+        model.addAttribute("users", users);
+        return "all-users";
+    }
     @GetMapping("/{username}/offers")
     public String getAllUserOffers(@PathVariable String username, Model model){
         List<OfferView> offers = userService.allUserOffers(username);
-        offers.forEach(System.out::println);
+
         model.addAttribute("All user offers", offers);
         return "user-page";
     }
     @GetMapping("/list")
     public String userList(Model model){
         List<UserView> users = userRoleService.allUserUser();
-        users.forEach(System.out::println);
+
         model.addAttribute("All brand models", users);
         return "all-brand-models";
     }

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список брендов</title>
+    <style>
+        .navbar-nav {
+             display: flex;
+             justify-content: space-between;
+             padding: 10px;
+         }
+
+         .nav-item {
+             list-style-type: none;
+         }
+
+         .nav-item-link {
+             text-decoration: none;
+             padding: 5px;
+             border: 2px solid black;
+             border-radius: 5px;
+             color: #333;
+             font-weight: bold;
+             font-size: 22px;
+             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+         }
+
+         .nav-item-link:hover {
+             text-decoration: underline;
+         }
+
+         .nav-item.main {
+             order: -1;
+         }
+
+         #footer {
+             position: fixed;
+             left: 0;
+             bottom: 0;
+             width: 100%;
+             background-color: #f8f9fa;
+             color: #6c757d;
+             padding: 10px;
+             text-align: center;
+         }
+
+         .main-text {
+             text-align: center;
+             margin-top: 100px;
+         }
+
+         .main-text h2 {
+             font-size: 36px;
+             font-weight: bold;
+             color: #333;
+             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+         }
+           .brand-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .brand-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .brand-info {
+            flex-grow: 1;
+            margin-left: 10px;
+        }
+
+        .brand-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .description {
+            font-size: 14px;
+            color: #555;
+            margin: 5px 0 0 0;
+        }
+
+        .logo {
+            max-width: 100px;
+            max-height: 100px;
+        }
+         .arrow-link {
+    color: black;
+    text-decoration: none;
+    font-size: 24px;
+  }
+
+
+
+    </style>
+</head>
+<body >
+<div th:replace="fragments/left-bar">Navbar</div>
+<div class="main-text" > <h2 >Список брендов</h2></div>
+
+
+<ul class="brand-list">
+    <li class="brand-item" th:each="brand : ${brands}">
+        <h2 class="brand-name" th:text="${brand.getName}"></h2>
+        <p><a class="arrow-link" th:href="@{${brand.getName} + '/models'}">→</a></p>
+
+    </li>
+</ul>
+
+<footer th:replace="fragments/footer" id="footer"></footer>
+</body>
+</html>

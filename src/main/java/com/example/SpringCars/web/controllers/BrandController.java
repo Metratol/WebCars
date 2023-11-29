@@ -3,6 +3,7 @@ package com.example.SpringCars.web.controllers;
 import com.example.SpringCars.models.enums.BrandEnum;
 import com.example.SpringCars.services.BrandService;
 import com.example.SpringCars.services.ModelService;
+import com.example.SpringCars.web.view.BrandView;
 import com.example.SpringCars.web.view.ModelView;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,16 +27,21 @@ public class BrandController {
     @GetMapping("/{brand}/models")
     public String getAllBrandModels(@PathVariable String brand, Model model){
         List<ModelView> models = brandService.allBrandModels(brand);
-        models.forEach(System.out::println);
-        model.addAttribute("All brand models", models);
+        model.addAttribute("models", models);
         return "all-brand-models";
     }
     @GetMapping("/{brand}/profit")
     public String getAllBrandProfit(@PathVariable String brand,Model model){
         int profit = brandService.brandProfit(BrandEnum.valueOf(brand));
-        System.out.println(profit);
         model.addAttribute("brand profit", profit);
-        return "all-brand-models";
+        return "profit";
+    }
+
+    @GetMapping("/all")
+    public String getAllBrands(Model model){
+        List<BrandView> brands = brandService.getAllBrands();
+        model.addAttribute("brands",brands);
+        return "all-brands";
     }
 
     @GetMapping("/models")
