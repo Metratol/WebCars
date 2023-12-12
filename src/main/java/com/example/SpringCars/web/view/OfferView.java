@@ -6,6 +6,7 @@ import com.example.SpringCars.modelsDto.ModelDto;
 import com.example.SpringCars.modelsDto.UserDto;
 
 public class OfferView {
+    private String id;
     private String description;
     private EngineEnum engine;
     private String imageUrl;
@@ -16,7 +17,8 @@ public class OfferView {
     private ModelDto model;
     private UserDto seller;
 
-    public OfferView(String description, EngineEnum engine, String imageUrl, int milieage, int price, TransmissionEnum transmission, int year, ModelDto model, UserDto seller) {
+    public OfferView(String id, String description, EngineEnum engine, String imageUrl, int milieage, int price, TransmissionEnum transmission, int year, ModelDto model, UserDto seller) {
+        this.id = id;
         this.description = description;
         this.engine = engine;
         this.imageUrl = imageUrl;
@@ -101,6 +103,14 @@ public class OfferView {
 
     public void setSeller(UserDto seller) {
         this.seller = seller;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     @Override

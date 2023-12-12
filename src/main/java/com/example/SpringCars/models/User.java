@@ -11,18 +11,18 @@ import java.util.Set;
 @Entity
 @Table(name ="users")
 public class User extends BaseModelIdDateUrl {
-    @Column(name ="is_active")
+
     private boolean isActive;
-    @Column(name = "username",unique = true,nullable = false)
+
     private String username;
 
-    @Column(name = "first_name")
+
     private String firstName;
 
-    @Column(name = "last_name")
+
     private String lastName;
 
-    @Column(name = "password",nullable = false)
+
     private String password;
 
 
@@ -61,7 +61,7 @@ public class User extends BaseModelIdDateUrl {
 
     public User() {
     }
-
+    @Column(name = "username",unique = true,nullable = false)
     public String getUsername() {
         return username;
     }
@@ -69,7 +69,7 @@ public class User extends BaseModelIdDateUrl {
     public void setUsername(String username) {
         this.username = username;
     }
-
+    @Column(name ="is_active")
     public boolean isActive() {
         return isActive;
     }
@@ -77,7 +77,7 @@ public class User extends BaseModelIdDateUrl {
     public void setActive(boolean active) {
         isActive = active;
     }
-
+    @Column(name = "first_name")
     public String getFirstName() {
         return firstName;
     }
@@ -85,7 +85,7 @@ public class User extends BaseModelIdDateUrl {
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-
+    @Column(name = "last_name")
     public String getLastName() {
         return lastName;
     }
@@ -93,7 +93,7 @@ public class User extends BaseModelIdDateUrl {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
+    @Column(name = "password",nullable = false)
     public String getPassword() {
         return password;
     }

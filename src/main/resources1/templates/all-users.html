@@ -84,6 +84,11 @@
          .table .user-number {
              font-weight: bold;
          }
+        .link{
+        font-size: 12px
+        text-color:Gray
+        color:Gray
+        }
     </style>
     <meta charset="UTF-8">
     <title>Пользователи</title>
@@ -98,16 +103,14 @@
             <tr>
                 <th>№</th>
                 <th>Никнейм</th>
-                <th>Фамилия</th>
-                <th>Имя</th>
+                <th>Визитка</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="user, userStat : ${users}">
                 <td class="user-number" th:text="${userStat.count}"></td>
                 <td th:text="${user.getUsername}"></td>
-                <td th:text="${user.getLastName}"></td>
-                <td th:text="${user.getFirstName}"></td>
+                <td><a class="link" th:href="'users/' + @{${user.getUsername} + '/detailinfo'}">Посмотреть</a></td>
             </tr>
             </tbody>
         </table>

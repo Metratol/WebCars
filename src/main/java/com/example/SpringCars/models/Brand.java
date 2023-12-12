@@ -11,7 +11,7 @@ import java.util.Set;
 @Entity
 @Table(name ="brands")
 public class Brand extends BaseModelIdDate {
-    @Column(name ="name")
+    @Column(name ="name",unique = true)
     private String name;
 
     @OneToMany(mappedBy = "brand",fetch = FetchType.LAZY)
@@ -39,7 +39,6 @@ public class Brand extends BaseModelIdDate {
 
     @Override
     public String toString() {
-        return "Brand" +
-                "name='" + name + " " ;
+        return  name ;
     }
 }

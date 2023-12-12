@@ -95,6 +95,7 @@ public class ModelDto {
                 ", imgUrl='" + imgUrl + '\'' +
                 ", startYear=" + startYear +
                 ", endYear=" + endYear +
+                ", brand=" + brand +
                 '}';
     }
 }
