@@ -3,7 +3,11 @@ package com.example.SpringCars;
 import com.example.SpringCars.init.factories.BaseFactory;
 import com.example.SpringCars.models.Offer;
 import com.example.SpringCars.services.OfferService;
-import com.example.SpringCars.services.UserService;
+import com.example.SpringCars.validation.ValidationUtil;
+import com.example.SpringCars.validation.ValidationUtilImpl;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.config.Configuration;
 import org.springframework.boot.CommandLineRunner;
@@ -13,6 +17,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @SpringBootApplication
@@ -25,6 +30,13 @@ public class SpringCarsApplication {
 				.setFieldMatchingEnabled(true)
 				.setFieldAccessLevel(Configuration.AccessLevel.PRIVATE);
 		return modelMapper;
+	}
+
+	@Bean
+	public Validator validator(){
+		return Validation
+				.buildDefaultValidatorFactory()
+				.getValidator();
 	}
 
 
@@ -44,8 +56,8 @@ public class SpringCarsApplication {
 
 		@Override
 		public void run(String... args) throws Exception {
-//			List<Offer> offers = baseFactory.listBuilder().offers(100,100);
-//			offerService.saveAllOffers(offers);
+			List<Offer> offers = baseFactory.listBuilder().offers(100,100);
+			offerService.saveAllOffers(offers);
 
 		}
 

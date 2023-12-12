@@ -1,10 +1,10 @@
 package com.example.SpringCars.services.impl;
 
-import com.example.SpringCars.models.Brand;
 import com.example.SpringCars.models.Model;
 import com.example.SpringCars.modelsDto.ModelDto;
 import com.example.SpringCars.repositories.ModelRepository;
 import com.example.SpringCars.services.ModelService;
+import com.example.SpringCars.web.view.ModelView;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -47,9 +47,20 @@ public class ModelServiceImpl implements ModelService {
 
     }
 
+
     @Override
     public void deleteModelById(UUID id) {
         modelRepository.deleteById(id);
 
+    }
+
+    @Override
+    public Model getModelById(UUID id) {
+        return modelRepository.findModelById(id);
+    }
+
+    @Override
+    public List<ModelView> topThreeModels(String name) {
+        return modelRepository.findTopPopularModels(name).stream().map((m) -> modelMapper.map(m,ModelView.class)).collect(Collectors.toList());
     }
 }

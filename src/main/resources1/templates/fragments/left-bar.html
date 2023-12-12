@@ -1,19 +1,33 @@
-<nav class="navbar">
+<nav class="navbar" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
     <div class="navbardiv">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
             <li class="nav-item - main">
                 <a class="nav-item-link" href="/">Главная</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" sec:authorize="hasRole('ADMIN')">
                 <a class="nav-item-link" href="/users">Пользователи</a>
             </li>
-
-            <li class="nav-item">
+            <li class="nav-item" sec:authorize="isAuthenticated()">
                 <a class="nav-item-link" href="/brand/all">Наши бренды</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-item-link" href="/">Регистрация</a>
+            <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+                <a class="nav-item-link" href="/brand/models/add">Добавить модель</a>
+            </li>
+            <li class="nav-item"  sec:authorize="!isAuthenticated()">
+                <a class="nav-item-link" href="/registration">Регистрация</a>
+            </li>
+            <li class="nav-item"  sec:authorize="!isAuthenticated()">
+                <a class="nav-item-link" href="/login">Вход</a>
+            </li>
+            <li class="nav-item" sec:authorize="isAuthenticated()">
+                <a class="nav-item-link" href="/profile">Профиль</a>
+            </li>
+            <li class="nav-item" sec:authorize="isAuthenticated()">
+                <form
+                        th:method="post"
+                        th:action="@{/logout}">
+                    <input class="nav-item-link" type="submit" value="Logout">
+                </form>
             </li>
         </ul>
     </div>

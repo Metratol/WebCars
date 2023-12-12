@@ -2,30 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <style>
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    th, td {
-        padding: 8px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-    }
-
-    th {
-        background-color: #f2f2f2;
-    }
-
-    tr:nth-child(even) {
-        background-color: #f8f8f8;
-    }
-
-    tr:hover {
-        background-color: #e6e6e6;
-    }
-
-    .navbar-nav {
+        .navbar-nav {
             display: flex;
             justify-content: space-between;
             padding: 10px;
@@ -113,7 +90,7 @@
         }
     </style>
     <meta charset="UTF-8">
-    <title>Пользователи</title>
+    <title>Заказ</title>
 </head>
 <body class="d-flex flex-column h-100">
 <div th:replace="fragments/left-bar">Navbar</div>
@@ -123,39 +100,20 @@
             <div class="col-md-2"></div>
             <main class="jumbotron text-center rounded col-md-12 align-self-center pt-5">
                 <div class="justify-content-center">
-                    <h1>Профиль</h1>
+                    <h1>Данные заказа</h1>
                 </div>
                 <div class="row bg-light rounded">
                     <div class="col-md-6">
-                        <h2>Пользователь</h2>
-                        <h4 th:text="'Логин: ' + ${user.getUsername}"></h4>
-                        <h4 th:text="'Имя: ' + ${user.getFirstName}"></h4>
-                        <h4 th:text="'Фамилия: ' + ${user.getLastName}"></h4>
+                        <h4 th:text="'Модель: ' + ${offer.model.name}"></h4>
+                        <h4 th:text="'Пробег: ' + ${offer.milieage}"></h4>
+                        <h4 th:text="'Трансмиссия: ' + ${offer.transmission}"></h4>
+                        <h4 th:text="'Двигатель: ' + ${offer.engine}"></h4>
+                        <h4 th:text="'Год: ' + ${offer.year}"></h4>
+                        <h4 th:text="'Цена: ' + ${offer.price}"></h4>
+                        <h4 th:text="'Описание: ' + ${offer.description}"></h4>
                     </div>
-
                 </div>
             </main>
-        </div>
-        <h2>Ваши заказы</h2>
-        <div>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>№</th>
-                    <th>Модель</th>
-                    <th>Цена</th>
-                    <th>Подробнее</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="offer, offerStat : ${offers}">
-                    <td class="user-number" th:text="${offerStat.count}"></td>
-                    <td th:text="${offer.model.name}"></td>
-                    <td th:text="${offer.price}"></td>
-                    <td><a th:href="@{'/offer/' + ${offer.id} + '/detailInfo'}" class="buy-button">Подробнее</a></td>
-                </tr>
-                </tbody>
-            </table>
         </div>
     </div>
 </main>

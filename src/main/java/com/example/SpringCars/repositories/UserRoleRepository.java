@@ -1,7 +1,5 @@
 package com.example.SpringCars.repositories;
 
-import com.example.SpringCars.models.Brand;
-import com.example.SpringCars.models.Offer;
 import com.example.SpringCars.models.User;
 import com.example.SpringCars.models.UserRole;
 import com.example.SpringCars.models.enums.RoleEnum;
@@ -11,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 @Repository
 public interface UserRoleRepository extends JpaRepository<UserRole, UUID> {
@@ -22,5 +21,5 @@ public interface UserRoleRepository extends JpaRepository<UserRole, UUID> {
             "WHERE r.name = :name")
     List<User> findAllWithCurrentRole(@Param(value = "name") RoleEnum roleEnum);
 
-
+    Optional<UserRole> findRoleByName(RoleEnum userRole);
 }

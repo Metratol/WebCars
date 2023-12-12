@@ -30,6 +30,7 @@ public interface BrandRepository extends JpaRepository<Brand, UUID> {
             "WHERE b.name = :name")
     int brandProfit(@Param(value = "name")String name);
 
+    Brand findByName(String name);
 
 
 }

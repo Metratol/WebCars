@@ -60,5 +60,10 @@ public class BrandServiceImpl implements BrandService {
     public int brandProfit(BrandEnum brandEnum) {
         return brandRepository.brandProfit(brandEnum.name());  }
 
+    @Override
+    public Optional<BrandDto> findBrandByName(String name) {
+        return Optional.ofNullable(modelMapper.map(brandRepository.findByName(name),BrandDto.class));
+    }
+
 
 }

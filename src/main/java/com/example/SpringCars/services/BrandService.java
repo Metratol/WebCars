@@ -18,6 +18,7 @@ public interface BrandService {
     List<ModelView> allBrandModels(String name);
     int brandSales(BrandEnum brandEnum);
     int brandProfit(BrandEnum brandEnum);
+    Optional<BrandDto> findBrandByName(String name);
 
 
 

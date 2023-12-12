@@ -1,29 +1,44 @@
 package com.example.SpringCars.web.view;
 
+import com.example.SpringCars.models.enums.BrandEnum;
 import com.example.SpringCars.models.enums.CategoryEnum;
 import com.example.SpringCars.modelsDto.BrandDto;
+import com.example.SpringCars.services.BrandService;
+import com.example.SpringCars.services.ModelService;
+import jakarta.validation.constraints.NotEmpty;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.UUID;
 
 public class ModelView {
+    private String id;
+    BrandService brandService;
     private String name;
     private CategoryEnum category;
 
     private String imageUrl;
     private int startYear;
-    private int endYear;
+
     private BrandDto brand;
 
-    public ModelView(String name, CategoryEnum category, String imageUrl, int startYear, int endYear, BrandDto brand) {
+    public ModelView(String id, BrandService brandService, String name, CategoryEnum category, String imageUrl, int startYear, BrandDto brand) {
+        this.id = id;
+        this.brandService = brandService;
         this.name = name;
         this.category = category;
         this.imageUrl = imageUrl;
         this.startYear = startYear;
-        this.endYear = endYear;
         this.brand = brand;
     }
 
     public ModelView() {
     }
+    @Autowired
+    public void setBrandService(BrandService brandService) {
+        this.brandService = brandService;
+    }
 
+    @NotEmpty(message = "Название не может быть пустым")
     public String getName() {
         return name;
     }
@@ -56,13 +71,6 @@ public class ModelView {
         this.startYear = startYear;
     }
 
-    public int getEndYear() {
-        return endYear;
-    }
-
-    public void setEndYear(int endYear) {
-        this.endYear = endYear;
-    }
 
     public BrandDto getBrand() {
         return brand;
@@ -72,15 +80,16 @@ public class ModelView {
         this.brand = brand;
     }
 
-    @Override
-    public String toString() {
-        return "ModelView{" +
-                "name='" + name + '\'' +
-                ", category=" + category.name() +
-                ", imgUrl='" + imageUrl + '\'' +
-                ", startYear=" + startYear +
-                ", endYear=" + endYear +
-                ", brand=" + brand.getName() +
-                '}';
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public BrandService getBrandService() {
+        return brandService;
     }
 }
+

@@ -1,98 +1,123 @@
-<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <style>
         .navbar-nav {
-             display: flex;
-             justify-content: space-between;
-             padding: 10px;
-         }
-
-         .nav-item {
-             list-style-type: none;
-         }
-
-         .nav-item-link {
-             text-decoration: none;
-             padding: 5px;
-             border: 2px solid black;
-             border-radius: 5px;
-             color: #333;
-             font-weight: bold;
-             font-size: 22px;
-             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-         }
-
-         .nav-item-link:hover {
-             text-decoration: underline;
-         }
-
-         .nav-item.main {
-             order: -1;
-         }
-
-         #footer {
-             position: fixed;
-             left: 0;
-             bottom: 0;
-             width: 100%;
-             background-color: #f8f9fa;
-             color: #6c757d;
-             padding: 10px;
-             text-align: center;
-         }
-
-         .main-text {
-             text-align: center;
-             margin-top: 100px;
-         }
-
-         .main-text h2 {
-             font-size: 36px;
-             font-weight: bold;
-             color: #333;
-             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-         }
-
-         .table {
-             margin: 50px auto;
-             border-collapse: collapse;
-             width: 80%;
-         }
-
-         .table th,
-         .table td {
-             padding: 10px;
-             border: 1px solid #ccc;
-             text-align: left;
-             font-size: 18px;
-         }
-
-         .table th {
-             background-color: #f8f9fa;
-             font-weight: bold;
-         }
-
-         .table tr:nth-child(even) {
-             background-color: #f2f2f2;
-         }
-
-         .table tr:hover {
-             background-color: #ddd;
-         }
-
-         .table .user-number {
-             font-weight: bold;
-         }
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+        }
+        .nav-item {
+            list-style-type: none;
+        }
+        .nav-item-link {
+            text-decoration: none;
+            padding: 5px;
+            border: 2px solid black;
+            border-radius: 5px;
+            color: #333;
+            font-weight: bold;
+            font-size: 22px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .nav-item-link:hover {
+            text-decoration: underline;
+        }
+        .nav-item.main {
+            order: -1;
+        }
+        #footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #f8f9fa;
+            color: #6c757d;
+            padding: 10px;
+            text-align: center;
+        }
+        .main-text {
+            text-align: center;
+            margin-top: 100px;
+        }
+        .main-text h2 {
+            font-size: 36px;
+            font-weight: bold;
+            color: #333;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .table {
+            margin: 50px auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+        .table th,
+        .table td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: left;
+            font-size: 18px;
+        }
+        .table th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+        .table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .table tr:hover {
+            background-color: #ddd;
+        }
+        .table .user-number {
+            font-weight: bold;
+        }
+        .buy-button {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .buy-button:hover {
+            background-color: #000;
+        }
     </style>
     <meta charset="UTF-8">
     <title>Модели</title>
 </head>
 <body>
 <div th:replace="fragments/left-bar">Navbar</div>
+
 <div class="main-text">
-    <h2><tr th:text ="${models[0].brand.name}"></h2>
+    <h2 th:text="${models[0].brand.name}"></h2>
     <div>
+        <h2>Топ-3 продаж бренда</h2>
+        <table class="table" th:if="${topmodels.size() > 0}">
+            <thead>
+            <tr>
+                <th>№</th>
+                <th>Модель</th>
+                <th>Год выпуска</th>
+                <th>Тип транспорта</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="topModel, topModelStat : ${topmodels}">
+                <td class="model-number" th:text="${topModelStat.index + 1}"></td>
+                <td th:text="${topModel.name}"></td>
+                <td th:text="${topModel.startYear}"></td>
+                <td th:text="${#strings.toLowerCase(topModel.category.name)}"></td>
+                <td><a th:href="@{'/model/' + ${topModel.id} + '/buy'}" class="buy-button">Купить</a></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <span th:if="${topmodels.size() == 0}">Нет топа продаж</span>
+    </div>
+    <div>
+        <h2>Все модели</h2>
         <table class="table">
             <thead>
             <tr>
@@ -100,6 +125,7 @@
                 <th>Модель</th>
                 <th>Год выпуска</th>
                 <th>Тип транспорта</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -108,6 +134,7 @@
                 <td th:text="${model.getName}"></td>
                 <td th:text="${model.getStartYear}"></td>
                 <td th:text="${#strings.toLowerCase(model.category.name)}"></td>
+                <td><a th:href="@{'/model/' + ${model.getId} + '/buy'}" class="buy-button">Купить</a></td>
             </tr>
             </tbody>
         </table>

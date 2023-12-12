@@ -9,11 +9,13 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 @Repository
 public interface UserRepository extends JpaRepository<User, UUID> {
     User findUserByLastName(String name);
     User findUserById(UUID id);
+    Optional<User> findUserByUsername(String username);
 
 
 
@@ -21,4 +23,5 @@ public interface UserRepository extends JpaRepository<User, UUID> {
             "JOIN User u ON u = o.seller " +
             "WHERE u.username = :username")
     List<Offer> findAllUserOffers(@Param(value = "username") String username);
+
 }

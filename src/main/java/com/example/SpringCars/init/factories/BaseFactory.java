@@ -105,7 +105,7 @@ return faker.random().nextInt(1988, 2005);
 }
 
 public String username() {
-return ((faker.animal().name() + faker.programmingLanguage().name() +faker.address().buildingNumber()).replace(" ",""));
+return ((faker.animal().name() + faker.address().buildingNumber()).replace(" ",""));
 }
 public String password() {
 return faker.internet().password();

@@ -1,10 +1,14 @@
 package com.example.SpringCars.services.impl;
 
+import com.example.SpringCars.models.Model;
 import com.example.SpringCars.models.Offer;
+import com.example.SpringCars.models.User;
 import com.example.SpringCars.modelsDto.ModelDto;
 import com.example.SpringCars.modelsDto.OfferDto;
 import com.example.SpringCars.repositories.OfferRepository;
+import com.example.SpringCars.services.ModelService;
 import com.example.SpringCars.services.OfferService;
+import com.example.SpringCars.services.UserService;
 import com.example.SpringCars.web.view.OfferCreation;
 import com.example.SpringCars.web.view.OfferView;
 import org.modelmapper.ModelMapper;
@@ -19,16 +23,23 @@ import java.util.stream.Collectors;
 public class OfferServiceImpl implements OfferService {
     OfferRepository offerRepository;
     ModelMapper modelMapper;
+    ModelService modelService;
+    UserService userService;
 
-    public OfferServiceImpl(OfferRepository offerRepository, ModelMapper modelMapper) {
+    public OfferServiceImpl(OfferRepository offerRepository, ModelMapper modelMapper, ModelService modelService, UserService userService) {
         this.offerRepository = offerRepository;
         this.modelMapper = modelMapper;
+        this.modelService = modelService;
+        this.userService = userService;
     }
 
     @Override
-    public OfferView add(OfferCreation offer) {
+    public Offer add(OfferCreation offer) {
         Offer o = modelMapper.map(offer,Offer.class);
-        return modelMapper.map(offerRepository.save(o),OfferView.class);
+        o.setSeller(userService.getUserById(offer.getSeller()));
+        o.setModel(modelService.getModelById(offer.getModel()));
+        System.out.println(o);
+        return offerRepository.save(o);
     }
 
     @Override
