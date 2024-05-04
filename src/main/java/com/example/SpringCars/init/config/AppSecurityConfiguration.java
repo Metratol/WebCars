@@ -1,5 +1,4 @@
 package com.example.SpringCars.init.config;
-
 import com.example.SpringCars.models.enums.RoleEnum;
 import com.example.SpringCars.repositories.UserRepository;
 import com.example.SpringCars.services.impl.AppUserDetailsService;
@@ -16,15 +15,12 @@ import org.springframework.security.web.context.DelegatingSecurityContextReposit
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.security.web.context.RequestAttributeSecurityContextRepository;
 import org.springframework.security.web.context.SecurityContextRepository;
-
 @Configuration
 public class AppSecurityConfiguration {
     private UserRepository userRepository;
-
     public AppSecurityConfiguration(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, SecurityContextRepository securityContextRepository) throws Exception {
         http
@@ -56,10 +52,8 @@ public class AppSecurityConfiguration {
                         securityContext -> securityContext.
                                 securityContextRepository(securityContextRepository)
                 );
-
         return http.build();
     }
-
     @Bean
     public SecurityContextRepository securityContextRepository() {
         return new DelegatingSecurityContextRepository(
@@ -67,12 +61,12 @@ public class AppSecurityConfiguration {
                 new HttpSessionSecurityContextRepository()
         );
     }
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
     @Bean
-    public UserDetailsService userDetailsService() { return new AppUserDetailsService(userRepository); }
+    public UserDetailsService userDetailsService() {
+        return new AppUserDetailsService(userRepository);
+    }
 }

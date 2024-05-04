@@ -1,5 +1,4 @@
 package com.example.SpringCars.repositories;
-
 import com.example.SpringCars.models.Brand;
 import com.example.SpringCars.models.Offer;
 import com.example.SpringCars.models.User;
@@ -16,12 +15,8 @@ public interface UserRepository extends JpaRepository<User, UUID> {
     User findUserByLastName(String name);
     User findUserById(UUID id);
     Optional<User> findUserByUsername(String username);
-
-
-
     @Query(value = "SELECT o FROM Offer o " +
             "JOIN User u ON u = o.seller " +
             "WHERE u.username = :username")
     List<Offer> findAllUserOffers(@Param(value = "username") String username);
-
 }
